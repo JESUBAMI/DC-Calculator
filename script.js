@@ -12,18 +12,21 @@ function scoreToGrade(score) {
 }
 
 function classify(cgpa) {
-  if (cgpa >= 4.50) return { text: "First Class Honours", cssVar: "--first-class" };
-  if (cgpa >= 3.50) return { text: "Second Class Honours (Upper) - 2:1", cssVar: "--two-one" };
-  if (cgpa >= 2.40) return { text: "Second Class Honours (Lower) - 2:2", cssVar: "--two-two" };
-  if (cgpa >= 1.50) return { text: "Third Class Honours", cssVar: "--third" };
-  if (cgpa >= 1.00) return { text: "Pass", cssVar: "--pass" };
+  if (cgpa >= 4.5)
+    return { text: "First Class Honours", cssVar: "--first-class" };
+  if (cgpa >= 3.5)
+    return { text: "Second Class Honours (Upper) - 2:1", cssVar: "--two-one" };
+  if (cgpa >= 2.4)
+    return { text: "Second Class Honours (Lower) - 2:2", cssVar: "--two-two" };
+  if (cgpa >= 1.5) return { text: "Third Class Honours", cssVar: "--third" };
+  if (cgpa >= 1.0) return { text: "Pass", cssVar: "--pass" };
   return { text: "Fail", cssVar: "--fail" };
 }
 
 function addCourse() {
-  const nameInput = document.getElementById('nameInput');
-  const unitInput = document.getElementById('unitInput');
-  const scoreInput = document.getElementById('scoreInput');
+  const nameInput = document.getElementById("nameInput");
+  const unitInput = document.getElementById("unitInput");
+  const scoreInput = document.getElementById("scoreInput");
 
   const name = nameInput.value.trim();
   const unit = Number(unitInput.value);
@@ -45,7 +48,7 @@ function addCourse() {
     unit: unit,
     score: score,
     letter: grade.letter,
-    point: grade.point
+    point: grade.point,
   });
 
   nameInput.value = "";
@@ -61,10 +64,11 @@ function removeCourse(index) {
 }
 
 function render() {
-  const ledger = document.getElementById('ledger');
+  const ledger = document.getElementById("ledger");
 
   if (courses.length === 0) {
-    ledger.innerHTML = '<div class="empty-state" id="emptyState">No courses added yet.</div>';
+    ledger.innerHTML =
+      '<div class="empty-state" id="emptyState">No courses added yet.</div>';
   } else {
     let rows = "";
     for (let i = 0; i < courses.length; i++) {
@@ -93,12 +97,12 @@ function render() {
 
   const cgpa = totalUnits === 0 ? 0 : totalPoints / totalUnits;
 
-  document.getElementById('totalUnits').innerText = totalUnits;
-  document.getElementById('totalPoints').innerText = totalPoints;
-  document.getElementById('stampNumber').innerText = cgpa.toFixed(2);
+  document.getElementById("totalUnits").innerText = totalUnits;
+  document.getElementById("totalPoints").innerText = totalPoints;
+  document.getElementById("stampNumber").innerText = cgpa.toFixed(2);
 
-  const classificationTag = document.getElementById('classificationTag');
-  const stamp = document.getElementById('stamp');
+  const classificationTag = document.getElementById("classificationTag");
+  const stamp = document.getElementById("stamp");
 
   if (totalUnits === 0) {
     classificationTag.innerText = "—";
@@ -114,12 +118,14 @@ function render() {
   }
 }
 
-document.getElementById('scoreInput').addEventListener('keypress', function(e) {
-  if (e.key === 'Enter') addCourse();
+document
+  .getElementById("scoreInput")
+  .addEventListener("keypress", function (e) {
+    if (e.key === "Enter") addCourse();
+  });
+document.getElementById("unitInput").addEventListener("keypress", function (e) {
+  if (e.key === "Enter") document.getElementById("scoreInput").focus();
 });
-document.getElementById('unitInput').addEventListener('keypress', function(e) {
-  if (e.key === 'Enter') document.getElementById('scoreInput').focus();
-});
-document.getElementById('nameInput').addEventListener('keypress', function(e) {
-  if (e.key === 'Enter') document.getElementById('unitInput').focus();
+document.getElementById("nameInput").addEventListener("keypress", function (e) {
+  if (e.key === "Enter") document.getElementById("unitInput").focus();
 });
