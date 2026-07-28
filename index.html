@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CGPA Calculator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="slip">
+  <header>
+    <div class="eyebrow">Result Slip</div>
+    <h1>CGPA Calculator</h1>
+    <p class="subtitle">Add each course with its unit and score. Grade points, total marks, and your CGPA are worked out automatically.</p>
+  </header>
+
+  <div class="add-row">
+    <input type="text" id="nameInput" placeholder="Course name (e.g. MTH 201)" maxlength="40">
+    <input type="number" id="unitInput" placeholder="Units" min="0" max="10">
+    <input type="number" id="scoreInput" placeholder="Score (0-100)" min="0" max="100">
+    <button id="addBtn" onclick="addCourse()">Add</button>
+  </div>
+
+  <div class="table-head">
+    <div>Course</div>
+    <div>Unit</div>
+    <div>Score</div>
+    <div>Grade</div>
+    <div>Points</div>
+    <div></div>
+  </div>
+
+  <div class="ledger" id="ledger">
+    <div class="empty-state" id="emptyState">No courses added yet.</div>
+  </div>
+
+  <div class="summary">
+    <div class="summary-item">
+      <div class="summary-label">Total Units</div>
+      <div class="summary-value" id="totalUnits">0</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-label">Total Grade Points</div>
+      <div class="summary-value" id="totalPoints">0</div>
+    </div>
+  </div>
+
+  <div class="total-section">
+    <div>
+      <div class="total-label">CGPA</div>
+      <div class="load-tag" id="classificationTag">—</div>
+    </div>
+    <div class="stamp" id="stamp">
+      <div class="stamp-number" id="stampNumber">0.00</div>
+      <div class="stamp-unit">CGPA</div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
